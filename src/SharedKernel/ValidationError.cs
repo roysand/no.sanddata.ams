@@ -8,10 +8,10 @@ public sealed record ValidationError : Error
             "One or more validation errors occurred",
             ErrorType.Validation)
     {
-        Errors = errors;
+        Errors = Array.AsReadOnly(errors);
     }
 
-    public Error[] Errors { get; }
+    public IReadOnlyList<Error> Errors { get; }
 
     public static ValidationError FromResults(IEnumerable<Result> results) =>
         new(results.Where(r => r.IsFailure).Select(r => r.Error).ToArray());

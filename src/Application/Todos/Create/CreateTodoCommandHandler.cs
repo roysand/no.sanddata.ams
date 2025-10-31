@@ -35,10 +35,11 @@ internal sealed class CreateTodoCommandHandler(
             Description = command.Description,
             Priority = command.Priority,
             DueDate = command.DueDate,
-            Labels = command.Labels,
             IsCompleted = false,
             CreatedAt = dateTimeProvider.UtcNow
         };
+        
+        todoItem.AddLabels(command.Labels);
 
         todoItem.Raise(new TodoItemCreatedDomainEvent(todoItem.Id));
 
