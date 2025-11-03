@@ -22,11 +22,11 @@ internal sealed class PermissionAuthorizationHandler(IServiceScopeFactory servic
 
         using IServiceScope scope = serviceScopeFactory.CreateScope();
 
-        PermissionProvider permissionProvider = scope.ServiceProvider.GetRequiredService<PermissionProvider>();
+        // PermissionProvider permissionProvider = scope.ServiceProvider.GetRequiredService<PermissionProvider>();
 
         Guid userId = context.User.GetUserId();
 
-        HashSet<string> permissions = await permissionProvider.GetForUserIdAsync(userId);
+        HashSet<string> permissions = await PermissionProvider.GetForUserIdAsync(userId);
 
         if (permissions.Contains(requirement.Permission))
         {

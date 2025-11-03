@@ -7,6 +7,8 @@ public static class MigrationExtensions
 {
     public static void ApplyMigrations(this IApplicationBuilder app)
     {
+        ArgumentNullException.ThrowIfNull(app);
+        
         using IServiceScope scope = app.ApplicationServices.CreateScope();
 
         using ApplicationDbContext dbContext =

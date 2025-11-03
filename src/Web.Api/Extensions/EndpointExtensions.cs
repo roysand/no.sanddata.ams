@@ -8,6 +8,7 @@ public static class EndpointExtensions
 {
     public static IServiceCollection AddEndpoints(this IServiceCollection services, Assembly assembly)
     {
+        ArgumentNullException.ThrowIfNull(assembly);
         ServiceDescriptor[] serviceDescriptors = assembly
             .DefinedTypes
             .Where(type => type is { IsAbstract: false, IsInterface: false } &&
@@ -24,8 +25,9 @@ public static class EndpointExtensions
         this WebApplication app,
         RouteGroupBuilder? routeGroupBuilder = null)
     {
+        ArgumentNullException.ThrowIfNull(app);
+        
         IEnumerable<IEndpoint> endpoints = app.Services.GetRequiredService<IEnumerable<IEndpoint>>();
-
         IEndpointRouteBuilder builder = routeGroupBuilder is null ? app : routeGroupBuilder;
 
         foreach (IEndpoint endpoint in endpoints)
