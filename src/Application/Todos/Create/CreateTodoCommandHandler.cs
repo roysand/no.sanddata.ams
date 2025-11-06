@@ -23,7 +23,7 @@ internal sealed class CreateTodoCommandHandler(
         }
 
         User? user = await context.Users.AsNoTracking()
-            .SingleOrDefaultAsync(u => u.Id == command.UserId, cancellationToken);
+            .SingleOrDefaultAsync(u => u.Id == command.UserId, cancellationToken).ConfigureAwait(false);
 
         if (user is null)
         {
@@ -46,7 +46,7 @@ internal sealed class CreateTodoCommandHandler(
 
         context.TodoItems.Add(todoItem);
 
-        await context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
         return todoItem.Id;
     }

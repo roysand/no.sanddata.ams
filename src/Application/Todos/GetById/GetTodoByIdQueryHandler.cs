@@ -26,7 +26,7 @@ internal sealed class GetTodoByIdQueryHandler(IApplicationDbContext context, IUs
                 CreatedAt = todoItem.CreatedAt,
                 CompletedAt = todoItem.CompletedAt
             })
-            .SingleOrDefaultAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken).ConfigureAwait(false);
 
         if (todo is null)
         {
