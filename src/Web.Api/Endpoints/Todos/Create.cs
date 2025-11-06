@@ -35,7 +35,7 @@ internal sealed class Create : IEndpoint
                 Priority = (Priority)request.Priority
             };
 
-            Result<Guid> result = await handler.Handle(command, cancellationToken);
+            Result<Guid> result = await handler.Handle(command, cancellationToken).ConfigureAwait(false);
 
             return result.Match(Results.Ok, CustomResults.Problem);
         })
