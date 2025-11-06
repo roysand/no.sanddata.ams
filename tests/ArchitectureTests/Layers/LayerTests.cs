@@ -6,7 +6,7 @@ namespace ArchitectureTests.Layers;
 public class LayerTests : BaseTest
 {
     [Fact]
-    public void Domain_Should_NotHaveDependencyOnApplication()
+    public void DomainShouldNotHaveDependencyOnApplication()
     {
         TestResult result = Types.InAssembly(DomainAssembly)
             .Should()
@@ -17,7 +17,7 @@ public class LayerTests : BaseTest
     }
 
     [Fact]
-    public void DomainLayer_ShouldNotHaveDependencyOn_InfrastructureLayer()
+    public void DomainLayerShouldNotHaveDependencyOnInfrastructureLayer()
     {
         TestResult result = Types.InAssembly(DomainAssembly)
             .Should()
@@ -28,7 +28,7 @@ public class LayerTests : BaseTest
     }
 
     [Fact]
-    public void DomainLayer_ShouldNotHaveDependencyOn_PresentationLayer()
+    public void DomainLayerShouldNotHaveDependencyOnPresentationLayer()
     {
         TestResult result = Types.InAssembly(DomainAssembly)
             .Should()
@@ -39,7 +39,7 @@ public class LayerTests : BaseTest
     }
 
     [Fact]
-    public void ApplicationLayer_ShouldNotHaveDependencyOn_InfrastructureLayer()
+    public void ApplicationLayerShouldNotHaveDependencyOnInfrastructureLayer()
     {
         TestResult result = Types.InAssembly(ApplicationAssembly)
             .Should()
@@ -50,7 +50,7 @@ public class LayerTests : BaseTest
     }
 
     [Fact]
-    public void ApplicationLayer_ShouldNotHaveDependencyOn_PresentationLayer()
+    public void ApplicationLayerShouldNotHaveDependencyOnPresentationLayer()
     {
         TestResult result = Types.InAssembly(ApplicationAssembly)
             .Should()
@@ -61,7 +61,7 @@ public class LayerTests : BaseTest
     }
 
     [Fact]
-    public void InfrastructureLayer_ShouldNotHaveDependencyOn_PresentationLayer()
+    public void InfrastructureLayerShouldNotHaveDependencyOnPresentationLayer()
     {
         TestResult result = Types.InAssembly(InfrastructureAssembly)
             .Should()
