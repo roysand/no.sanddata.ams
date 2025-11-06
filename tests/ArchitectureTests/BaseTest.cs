@@ -6,6 +6,7 @@ using Web.Api;
 
 namespace ArchitectureTests;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1515:Consider making the type internal", Justification = "Required to be public for xUnit tests")]
 public abstract class BaseTest
 {
     protected static readonly Assembly DomainAssembly = typeof(User).Assembly;
