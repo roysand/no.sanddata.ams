@@ -1,6 +1,6 @@
 ﻿using SharedKernel;
 
-namespace Domain.Users;
+namespace Domain.Entities.Users;
 
 public sealed class User : Entity
 {

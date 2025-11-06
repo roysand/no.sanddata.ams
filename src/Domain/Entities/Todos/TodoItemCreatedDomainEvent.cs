@@ -1,5 +1,5 @@
 ﻿using SharedKernel;
 
-namespace Domain.Todos;
+namespace Domain.Entities.Todos;
 
 public sealed record TodoItemCreatedDomainEvent(Guid TodoItemId) : IDomainEvent;

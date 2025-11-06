@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.Todos.Create;
+using Domain.Entities.Todos;
 using Domain.Todos;
 using SharedKernel;
 using Web.Api.Extensions;

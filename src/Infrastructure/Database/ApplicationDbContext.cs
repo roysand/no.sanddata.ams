@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Data;
+using Domain.Entities.Todos;
+using Domain.Entities.Users;
 using Domain.Todos;
-using Domain.Users;
 using Infrastructure.DomainEvents;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;

@@ -1,4 +1,4 @@
-﻿namespace Domain.Todos;
+﻿namespace Domain.Entities.Todos;
 
 public enum Priority
 {

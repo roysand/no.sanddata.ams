@@ -1,6 +1,6 @@
 ﻿using SharedKernel;
 
-namespace Domain.Todos;
+namespace Domain.Entities.Todos;
 
 public static class TodoItemErrors
 {
