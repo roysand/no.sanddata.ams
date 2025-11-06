@@ -10,7 +10,7 @@ namespace Web.Api.Endpoints.Todos;
 
 internal sealed class Create : IEndpoint
 {
-    public sealed class Request
+    internal sealed class Request
     {
         public Guid UserId { get; set; }
         public required string Description { get; set; }

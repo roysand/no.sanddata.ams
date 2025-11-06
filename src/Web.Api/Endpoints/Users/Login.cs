@@ -8,7 +8,7 @@ namespace Web.Api.Endpoints.Users;
 
 internal sealed class Login : IEndpoint
 {
-    public sealed record Request(string Email, string Password);
+    private sealed record Request(string Email, string Password);
 
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
@@ -19,7 +19,7 @@ internal sealed class Login : IEndpoint
         {
             var command = new LoginUserCommand(request.Email, request.Password);
 
-            Result<string> result = await handler.Handle(command, cancellationToken);
+            Result<string> result = await handler.Handle(command, cancellationToken).ConfigureAwait(false);
 
             return result.Match(Results.Ok, CustomResults.Problem);
         })
