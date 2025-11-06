@@ -41,11 +41,11 @@ public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applicati
 }
 
 // Minimal no-op implementation
-// public class NoOpDomainEventDispatcher<T> : IDomainEventHandler<T> where T : IDomainEvent
-// {
-//     public Task Handle(T domainEvent, CancellationToken cancellationToken)
-//         => Task.CompletedTask;
-// }
+public class NoOpDomainEventDispatcher<T> : IDomainEventHandler<T> where T : IDomainEvent
+{
+    public Task Handle(T domainEvent, CancellationToken cancellationToken)
+        => Task.CompletedTask;
+}
 
 public class NoOpDomainEventDispatcher : IDomainEventsDispatcher
 {

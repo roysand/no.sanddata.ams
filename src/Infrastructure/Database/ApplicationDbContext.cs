@@ -37,9 +37,9 @@ public sealed class ApplicationDbContext(
         //     - eventual consistency
         //     - handlers can fail
 
-        int result = await base.SaveChangesAsync(cancellationToken);
+        int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-        await PublishDomainEventsAsync();
+        await PublishDomainEventsAsync().ConfigureAwait(false);
 
         return result;
     }
@@ -59,6 +59,6 @@ public sealed class ApplicationDbContext(
             })
             .ToList();
 
-        await domainEventsDispatcher.DispatchAsync(domainEvents);
+        await domainEventsDispatcher.DispatchAsync(domainEvents).ConfigureAwait(false);
     }
 }

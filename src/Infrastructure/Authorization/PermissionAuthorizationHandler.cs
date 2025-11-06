@@ -19,12 +19,8 @@ internal sealed class PermissionAuthorizationHandler(IServiceScopeFactory servic
         }
 
         using IServiceScope scope = serviceScopeFactory.CreateScope();
-
-        // PermissionProvider permissionProvider = scope.ServiceProvider.GetRequiredService<PermissionProvider>();
-
         Guid userId = context.User.GetUserId();
-
-        HashSet<string> permissions = await PermissionProvider.GetForUserIdAsync(userId);
+        HashSet<string> permissions = await PermissionProvider.GetForUserIdAsync(userId).ConfigureAwait(false);
 
         if (permissions.Contains(requirement.Permission))
         {
