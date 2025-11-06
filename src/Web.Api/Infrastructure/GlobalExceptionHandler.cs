@@ -7,12 +7,17 @@ namespace Web.Api.Infrastructure;
 internal sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
     : IExceptionHandler
 {
+    private static readonly Action<ILogger, Exception> UnhandledExceptionOccurred = LoggerMessage.Define(
+        LogLevel.Error,
+        new EventId(1, "UnhandledException"),
+        "Unhandled exception occurred");
+
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
         Exception exception,
         CancellationToken cancellationToken)
     {
-        logger.LogError(exception, "Unhandled exception occurred");
+        UnhandledExceptionOccurred(logger, exception);
 
         var problemDetails = new ProblemDetails
         {
