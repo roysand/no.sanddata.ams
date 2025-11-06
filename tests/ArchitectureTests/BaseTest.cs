@@ -6,7 +6,7 @@ using Web.Api;
 
 namespace ArchitectureTests;
 
-internal abstract class BaseTest
+public abstract class BaseTest
 {
     protected static readonly Assembly DomainAssembly = typeof(User).Assembly;
     protected static readonly Assembly ApplicationAssembly = typeof(ICommand).Assembly;
