@@ -3,7 +3,7 @@
 namespace Web.Api.Extensions;
 
 #nullable enable
-public static class ResultExtensions
+internal static class ResultExtensions
 {
     public static TOut Match<TOut>(
         this Result result,
