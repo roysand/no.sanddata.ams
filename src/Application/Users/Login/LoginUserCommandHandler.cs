@@ -16,7 +16,7 @@ internal sealed class LoginUserCommandHandler(
     {
         User? user = await context.Users
             .AsNoTracking()
-            .SingleOrDefaultAsync(u => u.Email == command.Email, cancellationToken);
+            .SingleOrDefaultAsync(u => u.Email == command.Email, cancellationToken).ConfigureAwait(false);
 
         if (user is null)
         {

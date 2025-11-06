@@ -12,7 +12,7 @@ internal sealed class RegisterUserCommandHandler(IApplicationDbContext context, 
 {
     public async Task<Result<Guid>> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
     {
-        if (await context.Users.AnyAsync(u => u.Email == command.Email, cancellationToken))
+        if (await context.Users.AnyAsync(u => u.Email == command.Email, cancellationToken).ConfigureAwait(false))
         {
             return Result.Failure<Guid>(UserErrors.EmailNotUnique);
         }
@@ -30,7 +30,7 @@ internal sealed class RegisterUserCommandHandler(IApplicationDbContext context, 
 
         context.Users.Add(user);
 
-        await context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
         return user.Id;
     }

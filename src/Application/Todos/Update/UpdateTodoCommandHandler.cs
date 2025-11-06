@@ -14,7 +14,7 @@ internal sealed class UpdateTodoCommandHandler(
     public async Task<Result> Handle(UpdateTodoCommand command, CancellationToken cancellationToken)
     {
         TodoItem? todoItem = await context.TodoItems
-            .SingleOrDefaultAsync(t => t.Id == command.TodoItemId, cancellationToken);
+            .SingleOrDefaultAsync(t => t.Id == command.TodoItemId, cancellationToken).ConfigureAwait(false);
 
         if (todoItem is null)
         {
@@ -23,7 +23,7 @@ internal sealed class UpdateTodoCommandHandler(
 
         todoItem.Description = command.Description;
 
-        await context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         
         return Result.Success();
     }

@@ -11,7 +11,7 @@ internal static class ValidationDecorator
         ICommandHandler<TCommand, TResponse> innerHandler,
         IEnumerable<IValidator<TCommand>> validators)
         : ICommandHandler<TCommand, TResponse>
-        where TCommand : ICommand<TResponse>
+        where TCommand : ICommand
     {
         public async Task<Result<TResponse>> Handle(TCommand command, CancellationToken cancellationToken)
         {
@@ -19,7 +19,7 @@ internal static class ValidationDecorator
 
             if (validationFailures.Length == 0)
             {
-                return await innerHandler.Handle(command, cancellationToken);
+                return await innerHandler.Handle(command, cancellationToken).ConfigureAwait(false);
             }
 
             return Result.Failure<TResponse>(CreateValidationError(validationFailures));
@@ -34,11 +34,11 @@ internal static class ValidationDecorator
     {
         public async Task<Result> Handle(TCommand command, CancellationToken cancellationToken)
         {
-            ValidationFailure[] validationFailures = await ValidateAsync(command, validators);
+            ValidationFailure[] validationFailures = await ValidateAsync(command, validators).ConfigureAwait(false);
 
             if (validationFailures.Length == 0)
             {
-                return await innerHandler.Handle(command, cancellationToken);
+                return await innerHandler.Handle(command, cancellationToken).ConfigureAwait(false);
             }
 
             return Result.Failure(CreateValidationError(validationFailures));
@@ -57,7 +57,7 @@ internal static class ValidationDecorator
         var context = new ValidationContext<TCommand>(command);
 
         ValidationResult[] validationResults = await Task.WhenAll(
-            validators.Select(validator => validator.ValidateAsync(context)));
+            validators.Select(validator => validator.ValidateAsync(context))).ConfigureAwait(false);
 
         ValidationFailure[] validationFailures = validationResults
             .Where(validationResult => !validationResult.IsValid)
