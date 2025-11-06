@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using Application;
 using HealthChecks.UI.Client;
 using Infrastructure;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
 using Web.Api;
 using Web.Api.Extensions;
+
+[assembly: InternalsVisibleTo("ArchitectureTests")]
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -54,10 +57,10 @@ app.UseAuthorization();
 // REMARK: If you want to use Controllers, you'll need this.
 app.MapControllers();
 
-await app.RunAsync();
+await app.RunAsync().ConfigureAwait(false);
 
 // REMARK: Required for functional and integration tests to work.
 namespace Web.Api
 {
-    public partial class Program;
+    internal sealed partial class Program;
 }
