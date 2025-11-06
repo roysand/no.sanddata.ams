@@ -9,4 +9,6 @@ public sealed class HasPermissionAttribute : AuthorizeAttribute
         : base(permission)
     {
     }
+
+    public string Permission => Policy!;
 }

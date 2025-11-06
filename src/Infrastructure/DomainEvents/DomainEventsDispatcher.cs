@@ -33,7 +33,7 @@ internal sealed class DomainEventsDispatcher(IServiceProvider serviceProvider) :
 
                 var handlerWrapper = HandlerWrapper.Create(handler, domainEventType);
 
-                await handlerWrapper.Handle(domainEvent, cancellationToken);
+                await handlerWrapper.Handle(domainEvent, cancellationToken).ConfigureAwait(false);
             }
         }
     }
@@ -64,7 +64,7 @@ internal sealed class DomainEventsDispatcher(IServiceProvider serviceProvider) :
 
         public override async Task Handle(IDomainEvent domainEvent, CancellationToken cancellationToken)
         {
-            await _handler.Handle((T)domainEvent, cancellationToken);
+            await _handler.Handle((T)domainEvent, cancellationToken).ConfigureAwait(false);
         }
     }
 }
