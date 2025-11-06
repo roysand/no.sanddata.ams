@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Data;
+using Domain.Entities.Todos;
+using Domain.Entities.Users;
 using Domain.Todos;
-using Domain.Users;
 using Infrastructure.DomainEvents;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;
@@ -16,8 +17,9 @@ public sealed class ApplicationDbContext(
 
     public DbSet<TodoItem> TodoItems { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder? modelBuilder)
     {
+        ArgumentNullException.ThrowIfNull(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
         modelBuilder.HasDefaultSchema(Schemas.Default);
@@ -49,7 +51,7 @@ public sealed class ApplicationDbContext(
             .Select(entry => entry.Entity)
             .SelectMany(entity =>
             {
-                List<IDomainEvent> domainEvents = entity.DomainEvents;
+                IReadOnlyCollection<IDomainEvent> domainEvents = entity.DomainEvents;
 
                 entity.ClearDomainEvents();
 

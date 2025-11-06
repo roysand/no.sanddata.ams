@@ -9,6 +9,8 @@ public class RequestContextLoggingMiddleware(RequestDelegate next)
 
     public Task Invoke(HttpContext context)
     {
+        ArgumentNullException.ThrowIfNull(context);
+        
         using (LogContext.PushProperty("CorrelationId", GetCorrelationId(context)))
         {
             return next.Invoke(context);

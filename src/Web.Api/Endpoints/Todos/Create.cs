@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Messaging;
 using Application.Todos.Create;
+using Domain.Entities.Todos;
 using Domain.Todos;
 using SharedKernel;
 using Web.Api.Extensions;
@@ -12,7 +13,7 @@ internal sealed class Create : IEndpoint
     public sealed class Request
     {
         public Guid UserId { get; set; }
-        public string Description { get; set; }
+        public required string Description { get; set; }
         public DateTime? DueDate { get; set; }
         public List<string> Labels { get; set; } = [];
         public int Priority { get; set; }

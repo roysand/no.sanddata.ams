@@ -1,5 +1,5 @@
 ﻿using SharedKernel;
 
-namespace Domain.Users;
+namespace Domain.Entities.Users;
 
 public sealed record UserRegisteredDomainEvent(Guid UserId) : IDomainEvent;

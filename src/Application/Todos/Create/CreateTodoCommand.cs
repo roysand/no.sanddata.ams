@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions.Messaging;
+using Domain.Entities.Todos;
 using Domain.Todos;
 
 namespace Application.Todos.Create;
@@ -6,8 +7,8 @@ namespace Application.Todos.Create;
 public sealed class CreateTodoCommand : ICommand<Guid>
 {
     public Guid UserId { get; set; }
-    public string Description { get; set; }
+    public required string Description { get; set; }
     public DateTime? DueDate { get; set; }
-    public List<string> Labels { get; set; } = [];
+    public IReadOnlyList<string> Labels { get; init; } = [];
     public Priority Priority { get; set; }
 }

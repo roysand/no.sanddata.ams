@@ -1,8 +1,9 @@
 ﻿using Application.Abstractions.Authentication;
 using Application.Abstractions.Data;
 using Application.Abstractions.Messaging;
+using Domain.Entities.Todos;
+using Domain.Entities.Users;
 using Domain.Todos;
-using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using SharedKernel;
 
@@ -35,10 +36,11 @@ internal sealed class CreateTodoCommandHandler(
             Description = command.Description,
             Priority = command.Priority,
             DueDate = command.DueDate,
-            Labels = command.Labels,
             IsCompleted = false,
             CreatedAt = dateTimeProvider.UtcNow
         };
+        
+        todoItem.AddLabels(command.Labels);
 
         todoItem.Raise(new TodoItemCreatedDomainEvent(todoItem.Id));
 

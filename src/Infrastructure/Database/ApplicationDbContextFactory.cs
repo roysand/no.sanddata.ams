@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols.Configuration;
 using SharedKernel;
 
 namespace Infrastructure.Database;
@@ -19,7 +20,12 @@ public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<Applicati
             .AddEnvironmentVariables()
             .Build();
 
-        string connectionString = configuration.GetConnectionString("Database");
+        string? connectionString = configuration.GetConnectionString("Database");
+        
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            throw new InvalidConfigurationException("Database connection string is missing.");
+        }
 
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         optionsBuilder.UseSqlServer(
