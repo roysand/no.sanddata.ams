@@ -15,7 +15,7 @@ internal static class ValidationDecorator
     {
         public async Task<Result<TResponse>> Handle(TCommand command, CancellationToken cancellationToken)
         {
-            ValidationFailure[] validationFailures = await ValidateAsync(command, validators);
+            ValidationFailure[] validationFailures = await ValidateAsync(command, validators).ConfigureAwait(false);
 
             if (validationFailures.Length == 0)
             {
