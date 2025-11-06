@@ -26,7 +26,7 @@ internal sealed class GetUserByIdQueryHandler(IApplicationDbContext context, IUs
                 LastName = u.LastName,
                 Email = u.Email
             })
-            .SingleOrDefaultAsync(cancellationToken);
+            .SingleOrDefaultAsync(cancellationToken).ConfigureAwait(false);
 
         if (user is null)
         {

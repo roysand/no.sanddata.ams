@@ -30,7 +30,7 @@ internal sealed class GetTodosQueryHandler(IApplicationDbContext context, IUserC
                 CreatedAt = todoItem.CreatedAt,
                 CompletedAt = todoItem.CompletedAt
             })
-            .ToListAsync(cancellationToken);
+            .ToListAsync(cancellationToken).ConfigureAwait(false);
 
         return todos;
     }

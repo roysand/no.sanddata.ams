@@ -17,7 +17,7 @@ internal sealed class CompleteTodoCommandHandler(
     public async Task<Result> Handle(CompleteTodoCommand command, CancellationToken cancellationToken)
     {
         TodoItem? todoItem = await context.TodoItems
-            .SingleOrDefaultAsync(t => t.Id == command.TodoItemId && t.UserId == userContext.UserId, cancellationToken);
+            .SingleOrDefaultAsync(t => t.Id == command.TodoItemId && t.UserId == userContext.UserId, cancellationToken).ConfigureAwait(false);
 
         if (todoItem is null)
         {
@@ -34,7 +34,7 @@ internal sealed class CompleteTodoCommandHandler(
 
         todoItem.Raise(new TodoItemCompletedDomainEvent(todoItem.Id));
 
-        await context.SaveChangesAsync(cancellationToken);
+        await context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
         return Result.Success();
     }
