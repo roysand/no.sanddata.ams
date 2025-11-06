@@ -4,7 +4,7 @@ using Domain.Todos;
 
 namespace Application.Todos.Create;
 
-public sealed class CreateTodoCommand : ICommand<Guid>
+public sealed class CreateTodoCommand : ICommand
 {
     public Guid UserId { get; set; }
     public required string Description { get; set; }
