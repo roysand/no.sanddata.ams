@@ -1,4 +1,5 @@
 ﻿using no.sanddata.ams.Domain.Abstractions;
+using no.sanddata.ams.Domain.Users.Events;
 
 namespace no.sanddata.ams.Domain.Users;
 
@@ -26,6 +27,8 @@ public sealed class User : Entity
 
     public static User Create(FirstName firstName, LastName lastName, Email email, PasswordHash passwordHash)
     {
-        return new User(Guid.NewGuid(), firstName, lastName, email, passwordHash);
+        var user = new User(Guid.NewGuid(), firstName, lastName, email, passwordHash);
+        user.RaiseDomainEvent(new UserCreatedDomainEvent(user.Id,DateTime.UtcNow));
+        return user;
     }
 }
