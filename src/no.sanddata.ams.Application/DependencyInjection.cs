@@ -2,7 +2,7 @@
 
 namespace no.sanddata.ams.Application;
 
-public static class DependencyInjection
+public static class AddDependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {

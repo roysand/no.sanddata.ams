@@ -36,7 +36,7 @@ public class Result
         value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
 }
 
-public class Result<TValue> : Result
+public class Result<TValue> : Result, IQuery, IQuery, IQuery, IQuery, IQuery, IQuery
 {
     protected internal Result(TValue? value, bool isSuccess, Error error)
         : base(isSuccess, error)
