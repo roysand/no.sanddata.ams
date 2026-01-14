@@ -16,5 +16,4 @@ public interface ICommand<TResponse> : IBaseCommand
 
 public interface IBaseCommand
 {
-    
 }
