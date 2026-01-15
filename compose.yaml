@@ -5,3 +5,9 @@
       context: .
       dockerfile: Src/Api/Dockerfile
 
+  no.sanddata.ams.api:
+    image: no.sanddata.ams.api
+    build:
+      context: .
+      dockerfile: src/no.sanddata.ams.Api/Dockerfile
+
