@@ -1,0 +1,6 @@
+@no.sanddata.ams.Api_HostAddress = http://localhost:5133
+
+GET {{no.sanddata.ams.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

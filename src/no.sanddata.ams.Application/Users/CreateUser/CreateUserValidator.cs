@@ -18,6 +18,7 @@ public class CreateUserValidator : AbstractValidator<CreateUserCommand>
             .NotEmpty().WithMessage("Last name is required");
         
         RuleFor(v => v.Password)
-            .NotEmpty().WithMessage("Password is required");
+            .NotEmpty().WithMessage("Password is required")
+            .MinimumLength(8).WithMessage("Password must be at least 8 characters");
     }
 }
