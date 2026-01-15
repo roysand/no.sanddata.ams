@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "no.sanddata.ams.Domain", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "no.sanddata.ams.Application", "src\no.sanddata.ams.Application\no.sanddata.ams.Application.csproj", "{E5DB828E-AAD9-4C18-B4C3-3C800DAFF5BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "no.sanddata.ams.Infrastructure", "src\no.sanddata.ams.Infrastructure\no.sanddata.ams.Infrastructure.csproj", "{36883ED1-D1E3-44AA-939C-A3DD277C997A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FF67BA7B-1730-4297-A416-328AC8CD0D18} = {31C80688-B0D9-4BF8-A2E8-8BF1491AD907}
 		{E5DB828E-AAD9-4C18-B4C3-3C800DAFF5BA} = {31C80688-B0D9-4BF8-A2E8-8BF1491AD907}
+		{36883ED1-D1E3-44AA-939C-A3DD277C997A} = {31C80688-B0D9-4BF8-A2E8-8BF1491AD907}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FF67BA7B-1730-4297-A416-328AC8CD0D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -35,5 +38,9 @@ Global
 		{E5DB828E-AAD9-4C18-B4C3-3C800DAFF5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5DB828E-AAD9-4C18-B4C3-3C800DAFF5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5DB828E-AAD9-4C18-B4C3-3C800DAFF5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36883ED1-D1E3-44AA-939C-A3DD277C997A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36883ED1-D1E3-44AA-939C-A3DD277C997A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36883ED1-D1E3-44AA-939C-A3DD277C997A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36883ED1-D1E3-44AA-939C-A3DD277C997A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
