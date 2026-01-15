@@ -28,7 +28,7 @@ public sealed class CreateUserCommandHandler : ICommandHandler<CreateUserCommand
         var lastName = new LastName(command.LastName);
         var email = new Email(command.Email);
         var passwordHash = new PasswordHash(command.Password); // Hash the password here
-        var utcNow = DateTime.UtcNow;
+        DateTime utcNow = DateTime.UtcNow;
         var user = User.Create(firstName, lastName, email, passwordHash, utcNow);
 
         _userRepository.Add(user);

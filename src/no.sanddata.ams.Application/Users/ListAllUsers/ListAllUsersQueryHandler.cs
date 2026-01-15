@@ -16,7 +16,7 @@ public sealed class ListAllUsersQueryHandler : IQueryHandler<ListAllUsersQuery, 
     }
     public async Task<Result<IReadOnlyList<Guid>>> HandleAsync(ListAllUsersQuery query, CancellationToken cancellationToken)
     {    
-        var users = await _userRepository.GetAllAsync(cancellationToken).ConfigureAwait(false);
+        IReadOnlyList<User>? users = await _userRepository.GetAllAsync(cancellationToken).ConfigureAwait(false);
         if (users is null)
         {
             return Result.Failure<IReadOnlyList<Guid>>(UserErrors.NoUsersFound);
