@@ -13,7 +13,12 @@ public sealed class User : Entity
     public DateTime CreatedAtUtc { get; private set; }
     public DateTime ModifiedAtUtc { get; private set; }
 
-    private User(Guid id, FirstName firstName, LastName lastName, Email email, PasswordHash passwordHash)
+    private User(Guid id,
+        FirstName firstName,
+        LastName lastName,
+        Email email,
+        PasswordHash passwordHash,
+        DateTime utcNow)
         : base(id)
     {
         FirstName = firstName;
@@ -21,14 +26,18 @@ public sealed class User : Entity
         Email = email;
         PasswordHash = passwordHash;
         IsActive = true;
-        CreatedAtUtc = DateTime.UtcNow;
-        ModifiedAtUtc = DateTime.UtcNow;
+        CreatedAtUtc = utcNow;
+        ModifiedAtUtc = utcNow;
     }
 
-    public static User Create(FirstName firstName, LastName lastName, Email email, PasswordHash passwordHash)
+    public static User Create(FirstName firstName,
+        LastName lastName,
+        Email email,
+        PasswordHash passwordHash,
+        DateTime utcNow)
     {
-        var user = new User(Guid.NewGuid(), firstName, lastName, email, passwordHash);
-        user.RaiseDomainEvent(new UserCreatedDomainEvent(user.Id,DateTime.UtcNow));
+        var user = new User(Guid.NewGuid(), firstName, lastName, email, passwordHash, utcNow);
+        user.RaiseDomainEvent(new UserCreatedDomainEvent(user.Id,utcNow));
         return user;
     }
 }
