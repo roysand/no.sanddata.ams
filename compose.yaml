@@ -1,10 +1,4 @@
 ﻿services:
-  api:
-    image: api
-    build:
-      context: .
-      dockerfile: Src/Api/Dockerfile
-
   no.sanddata.ams.api:
     image: no.sanddata.ams.api
     build:

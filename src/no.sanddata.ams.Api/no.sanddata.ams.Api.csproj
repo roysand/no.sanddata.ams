@@ -19,4 +19,9 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\no.sanddata.ams.Application\no.sanddata.ams.Application.csproj" />
+      <ProjectReference Include="..\no.sanddata.ams.Infrastructure\no.sanddata.ams.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

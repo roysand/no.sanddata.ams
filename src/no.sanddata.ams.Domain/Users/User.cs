@@ -13,6 +13,10 @@ public sealed class User : Entity
     public DateTime CreatedAtUtc { get; private set; }
     public DateTime ModifiedAtUtc { get; private set; }
 
+    private User()
+    {
+    }
+    
     private User(Guid id,
         FirstName firstName,
         LastName lastName,
