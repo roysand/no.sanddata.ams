@@ -12,10 +12,13 @@ public sealed class User : Entity
     public bool IsActive { get; private set; }
     public DateTime CreatedAtUtc { get; private set; }
     public DateTime ModifiedAtUtc { get; private set; }
-
+    
+// due to ORM
+#pragma warning disable CS8618
     private User()
     {
     }
+#pragma warning restore CS8618
     
     private User(Guid id,
         FirstName firstName,

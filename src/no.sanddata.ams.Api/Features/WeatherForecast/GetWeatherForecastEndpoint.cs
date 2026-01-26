@@ -1,8 +1,10 @@
-﻿using FastEndpoints;
+﻿using System.Diagnostics.CodeAnalysis;
+using FastEndpoints;
 
 namespace no.sanddata.ams.Api.Features.WeatherForecast;
 
-public sealed class GetWeatherForecastEndpoint : EndpointWithoutRequest<WeatherForecastResponse[]>
+[SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Instantiated by FastEndpoints")]
+internal sealed class GetWeatherForecastEndpoint : EndpointWithoutRequest<WeatherForecastResponse[]>
 {
     public override void Configure()
     {
@@ -25,12 +27,12 @@ public sealed class GetWeatherForecastEndpoint : EndpointWithoutRequest<WeatherF
                 summaries[Random.Shared.Next(summaries.Length)]
             )).ToArray();
 
-        await Send.OkAsync(forecast, ct);
+        await Send.OkAsync(forecast, ct).ConfigureAwait(false);
     }
 #pragma warning restore CA5394
 }
 
-public sealed record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary)
+internal sealed record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }

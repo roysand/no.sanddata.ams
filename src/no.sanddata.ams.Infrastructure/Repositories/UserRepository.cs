@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using no.sanddata.ams.Domain.Users;
 
 namespace no.sanddata.ams.Infrastructure.Repositories;
 
+[SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Instantiated by DI container")]
 internal sealed class UserRepository : Repository<User>, IUserRepository
 {
     public UserRepository(ApplicationDbContext dbContext)
@@ -14,6 +16,6 @@ internal sealed class UserRepository : Repository<User>, IUserRepository
     {
         return await DbContext
             .Set<User>()
-            .ToListAsync(cancellationToken);
+            .ToListAsync(cancellationToken).ConfigureAwait(false);
     }
 }

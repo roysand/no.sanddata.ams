@@ -25,7 +25,7 @@ public class DomainEventDispatcher : IDomainEventDispatcher
         
         foreach (IDomainEventHandler<TDomainEvent> handler in handlers)
         {
-            await handler.Handle(domainEvent, cancellationToken);
+            await handler.Handle(domainEvent, cancellationToken).ConfigureAwait(false);
         }
     }
 }

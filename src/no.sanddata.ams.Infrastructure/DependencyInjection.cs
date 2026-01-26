@@ -13,7 +13,7 @@ using no.sanddata.ams.Infrastructure.Repositories;
 
 namespace no.sanddata.ams.Infrastructure;
 
-public static class DependencyInjection
+public static class InfrastructureServiceExtensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {

@@ -26,7 +26,7 @@ public sealed class DomainEventPublisher : IDomainEventPublisher
             MethodInfo? handleMethod = handlerType.GetMethod("Handle");
             if (handleMethod != null)
             {
-                await (Task)handleMethod.Invoke(handler, [domainEvent, cancellationToken])!;
+                await ((Task)handleMethod.Invoke(handler, [domainEvent, cancellationToken])!).ConfigureAwait(false);
             }
         }
     }

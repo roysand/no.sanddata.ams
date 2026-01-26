@@ -4,7 +4,7 @@ using no.sanddata.ams.Application.Abstractions.Messaging;
 
 namespace no.sanddata.ams.Application.Abstractions.Processor;
 
-public class LoggingPreProcessor<TRequest> : IPreProcessor<TRequest> where TRequest : IBaseCommand
+public partial class LoggingPreProcessor<TRequest> : IPreProcessor<TRequest> where TRequest : IBaseCommand
 {
     private readonly ILogger<LoggingPreProcessor<TRequest>> _logger;
 
@@ -21,8 +21,12 @@ public class LoggingPreProcessor<TRequest> : IPreProcessor<TRequest> where TRequ
         }
 
         string name = context.GetType().Name;
-        _logger.LogInformation("Executing command {Command}", name);
+        LogExecutingCommand(_logger, name);
 
         return Task.CompletedTask;
    }
+    
+        
+    [LoggerMessage(Level = LogLevel.Information, Message = "Executing command {Command}")]
+    private static partial void LogExecutingCommand(ILogger logger, string command);
 }

@@ -23,7 +23,7 @@ public sealed class ApplicationDbContext(
     
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        int result = await base.SaveChangesAsync(cancellationToken);
+        int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         await PublishDomainEventsAsync(cancellationToken).ConfigureAwait(false);
         return result;
     }
@@ -44,7 +44,7 @@ public sealed class ApplicationDbContext(
 
         foreach (IDomainEvent domainEvent in domainEvents)
         {
-            await _eventPublisher.PublishAsync(domainEvent, cancellationToken);
+            await _eventPublisher.PublishAsync(domainEvent, cancellationToken).ConfigureAwait(false);
         }
     }
 }

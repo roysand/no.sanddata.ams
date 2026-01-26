@@ -4,7 +4,7 @@ using no.sanddata.ams.Application.Abstractions.Messaging;
 
 namespace no.sanddata.ams.Application.Abstractions.Processor;
 
-public class LoggingPostProcessor<TRequest,TResponse> : IPostProcessor<TRequest,TResponse> where TRequest : IBaseCommand
+public partial class LoggingPostProcessor<TRequest,TResponse> : IPostProcessor<TRequest,TResponse> where TRequest : IBaseCommand
 {
     private readonly ILogger<LoggingPostProcessor<TRequest,TResponse>> _logger;
 
@@ -21,8 +21,11 @@ public class LoggingPostProcessor<TRequest,TResponse> : IPostProcessor<TRequest,
         }
 
         string name = context.GetType().Name;
-        _logger.LogInformation("Executed command {Command}", name);
+        LogExecutedCommandCommand(name);
         
         return Task.CompletedTask;
     }
+
+    [LoggerMessage(LogLevel.Information, "Executed command {Command}")]
+    partial void LogExecutedCommandCommand(string Command);
 }

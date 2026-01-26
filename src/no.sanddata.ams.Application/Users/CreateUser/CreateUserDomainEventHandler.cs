@@ -1,7 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using no.sanddata.ams.Application.Abstractions.Event;
 using no.sanddata.ams.Domain.Users.Events;
 
 namespace no.sanddata.ams.Application.Users.CreateUser;
+
+[SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "Instantiated by DI container")]
 
 internal sealed class CreateUserDomainEventHandler : IDomainEventHandler<UserCreatedDomainEvent>
 {
@@ -9,6 +12,6 @@ internal sealed class CreateUserDomainEventHandler : IDomainEventHandler<UserCre
     {
         // Implement your domain event handling logic here
         // For example: send email, update read models, etc.
-        await Task.CompletedTask;
+        await Task.CompletedTask.ConfigureAwait(false);
     }
 }
